@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from '@/app/ui/styles/home.module.css';
 
 export default function Home() {
@@ -14,8 +15,24 @@ export default function Home() {
               Go to Blog
             </a>
           </div>
+          <div className='relative flex items-center justify-center'>
+            {/* Image */}
+            <Image
+              src='image-desktop.png'
+              width={1000}
+              height={760}
+              className='hidden md:block z-10'
+              alt='Screenshots of the dashboard project showing desktop version'
+            />
+            <Image
+              src='image-mobile.png'
+              width={1000}
+              height={760}
+              className='md:hidden z-10'
+              alt='Screenshots of the dashboard project showing mobile version'
+            />
         </div>
-
+      </div>
       </div>
       <div className={`hidden md:block absolute top-0 right-0 bottom-0 left-2/3 z-0 ${styles.bg_wisteria}`}></div>
     </main>
