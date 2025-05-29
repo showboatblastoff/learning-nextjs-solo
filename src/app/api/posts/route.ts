@@ -27,15 +27,15 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const { id, title, content, date, author } = await request.json(); // Parse JSON body
+    const { id, author, title, content, date  } = await request.json(); // Parse JSON body
 
     // SQL query to insert a new post with author from form
     const posts = await sql`
-      INSERT INTO posts (id, title, content, date, author)
-      VALUES (${id}, ${title}, ${content}, ${date}, ${author || 'Anonymous'})
+      INSERT INTO posts (id, author, title, content, date)
+      VALUES (${id}, ${author || 'Anonymous'}, ${title}, ${content}, ${date})
       RETURNING *;
     `;
-    return NextResponse.json({ posts }, { status: 200 });
+    return NextResponse.json({ message: 'Post sucessfully inserted' }, { status: 200 });
   } catch (error) {
     console.error('Error inserting post:', error);
     return NextResponse.json({ error: String(error) }, { status: 500 });

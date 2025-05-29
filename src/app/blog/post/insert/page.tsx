@@ -54,14 +54,13 @@ export default function Page() {
     <div className="bg-white p-8 rounded shadow">
       <h2 className="text-2xl mb-4 text-purple-700">New Blog Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-
+      <div>
+          <label htmlFor="author" className="block font-medium">Author:</label>
+          <input type="text" id="author" name="author" value={formData.author} onChange={handleChange} className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none" />
+        </div>
         <div>
           <label htmlFor="title" className="block font-medium">Title:</label>
           <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none" />
-        </div>
-        <div>
-          <label htmlFor="author" className="block font-medium">Author:</label>
-          <input type="text" id="author" name="author" value={formData.author} onChange={handleChange} className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none" />
         </div>
         <div>
           <label htmlFor="content" className="block font-medium">Content:</label>
