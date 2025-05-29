@@ -16,7 +16,7 @@ export default function Page({ params }: { params: { id: string } }) {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const response = await fetch(`/api/handlers?id=${params.id}`);
+        const response = await fetch(`/api/posts?id=${params.id}`);
         const data: PostType = await response.json();
         setPost(data);
       } catch (error) {

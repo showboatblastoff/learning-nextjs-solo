@@ -24,7 +24,7 @@ export default function Page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const uuid = uuidv4();
-    fetch(`/api/handlers`, {
+    fetch(`/api/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
