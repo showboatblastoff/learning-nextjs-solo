@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Post from '@/app/ui/components/posts/Post';
+import { notFound } from 'next/navigation';
 
 interface PostType {
   id: string;
@@ -35,7 +36,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   if (!post) {
-    return <div>Post not found</div>;
+    notFound(); // Trigger 404 if post is not found
   }
 
   return (
