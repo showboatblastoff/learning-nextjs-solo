@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from 'react';
 import Post from '@/app/ui/components/posts/Post';
 
