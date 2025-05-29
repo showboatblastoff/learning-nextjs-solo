@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     }
 
     // Fetch all posts if no ID is provided
-    const posts = await sql`SELECT * FROM posts ORDER BY date DESC LIMIT 2;`;
+    const posts = await sql`SELECT * FROM posts ORDER BY date DESC;`;
     return NextResponse.json({ posts }, { status: 200 });
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -35,6 +35,7 @@ export async function POST(request: Request) {
       VALUES (${id}, ${author || 'Anonymous'}, ${title}, ${content}, ${date})
       RETURNING *;
     `;
+    console.log('New post created:', posts[0]); // Log the new post to the terminal
     return NextResponse.json({ message: 'Post sucessfully inserted' }, { status: 200 });
   } catch (error) {
     console.error('Error inserting post:', error);

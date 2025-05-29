@@ -35,6 +35,7 @@ export default function Page() {
         const error = await response.json();
         throw new Error(error.error || 'Failed to create post');
       }
+      console.log('Post created successfully', formData);
       // Clear form fields
       setFormData({
         id: '',
