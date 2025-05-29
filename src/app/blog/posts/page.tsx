@@ -1,22 +1,11 @@
-'use client';
-
 import Link from 'next/link';
 import { Button } from '@/app/ui/components/button';
 import Post from '@/app/ui/components/posts/Post';
-import { useState, useEffect } from 'react';
-import { Post as PostType } from '@/app/lib/definition';
+import { fetchPosts } from '@/app/lib/data';
 
-export default function Page() {
-  const [posts, setPosts] = useState<PostType[]>([]); // State for posts
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const fetchedPosts = await fetch('/api/posts');
-      const data = await fetchedPosts.json(); // Fixed typo
-      setPosts(data.posts);
-    }
-    fetchPosts(); // Fetch posts on component load
-  }, []);
+export default async function Page() {
+  // This will trigger loading.tsx while data is being fetched
+  const posts = await fetchPosts();
 
   return (
     <>
@@ -26,7 +15,7 @@ export default function Page() {
           New +
         </Button>
       </Link>
-      {posts?.map((post: PostType) => (
+      {posts?.map((post) => (
         <Post key={post.id} {...post} />
       ))}
     </>
