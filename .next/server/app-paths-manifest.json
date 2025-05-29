@@ -1,7 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/handlers/route": "app/api/handlers/route.js",
   "/blog/post/insert/page": "app/blog/post/insert/page.js",
   "/blog/posts/page": "app/blog/posts/page.js"
 }
