@@ -1,14 +1,44 @@
-import { posts } from '@/app/lib/placeholder-data';
+import { useEffect, useState } from 'react';
 import Post from '@/app/ui/components/posts/Post';
 
+interface PostType {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+}
+
 export default function Page({ params }: { params: { id: string } }) {
-  const post = posts.find((post) => post.id === params.id);
+  const [post, setPost] = useState<PostType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        const response = await fetch(`/api/handlers?id=${params.id}`);
+        const data: PostType = await response.json();
+        setPost(data);
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPost();
+  }, [params.id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   if (!post) {
     return <div>Post not found</div>;
   }
+
   return (
     <>
-      <h1>Post</h1>
+      <h1>{post.title}</h1>
       <Post {...post} />
     </>
   );

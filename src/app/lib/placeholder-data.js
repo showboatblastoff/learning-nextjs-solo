@@ -2,16 +2,14 @@ const posts = [
   {
     id: "a5e08164-b12b-4e72-9191-2f7daadb4e88",
     title: "Post Title 1",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do ei",
+    content: "Say hello to the world",
     date: "276761",
     user: "Sandra B",
   },
   {
     id: "6bd38af3-8a95-4a7a-add7-fd69c6b8f124",
     title: "Post Title 2",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    content: "I cant feel my feet",
     date: "911166",
     user: "Sandra B",
   },
@@ -77,7 +75,7 @@ const posts = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     date: "632982",
     user: "Sandy L",
-  }
+  },
 ];
 
 module.exports = {
