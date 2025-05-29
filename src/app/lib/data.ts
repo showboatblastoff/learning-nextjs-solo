@@ -1,23 +1,18 @@
 import { neon } from '@neondatabase/serverless';
 import { Post } from './definition';
 import { unstable_noStore as noStore } from 'next/cache';
+import { simulateDelay } from './utils/delay';
 
 // Create a connection to your Neon database
 const sql = neon(process.env.DATABASE_URL!);
 
-// Configure delay for testing loading states (set to 0 to disable)
-const LOADING_STATE_DELAY = 3000; // milliseconds
-
 // Function to fetch all posts
-
 export async function fetchPosts(): Promise<Post[]> {
   try {
     noStore(); // Disable caching for this function
     
-    // Simulate delay for testing loading states
-    if (LOADING_STATE_DELAY > 0) {
-      await new Promise(resolve => setTimeout(resolve, LOADING_STATE_DELAY));
-    }
+    // Simulate delay for testing loading states (only in development)
+    await simulateDelay(3000);
     
     const data = await sql`
       SELECT id, title, content, date, author as user
@@ -34,10 +29,8 @@ export async function fetchPosts(): Promise<Post[]> {
 // Function to fetch a single post by ID
 export async function fetchPostById(id: string): Promise<Post | undefined> {
   try {
-    // Simulate delay for testing loading states (same as fetchPosts)
-    if (LOADING_STATE_DELAY > 0) {
-      await new Promise(resolve => setTimeout(resolve, LOADING_STATE_DELAY));
-    }
+    // Add delay here too for consistent behavior during testing
+    await simulateDelay(3000);
     
     const data = await sql`
       SELECT id, title, content, date, author as user

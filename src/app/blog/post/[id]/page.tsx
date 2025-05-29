@@ -1,23 +1,47 @@
-import { fetchPostById } from '@/app/lib/data';
+"use client";
+import { useEffect, useState } from 'react';
 import Post from '@/app/ui/components/posts/Post';
-import { notFound } from 'next/navigation';
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const post = await fetchPostById(params.id);
+interface PostType {
+  id: string;
+  author: string;
+  title: string;
+  content: string;
+  date: string;
+}
+
+export default function Page({ params }: { params: { id: string } }) {
+  const [post, setPost] = useState<PostType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        const response = await fetch(`/api/posts?id=${params.id}`);
+        const data = await response.json();
+        setPost(data.post); // Extract the post from the response object
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPost();
+  }, [params.id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!post) {
-    notFound();
+    return <div>Post not found</div>;
   }
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
-      <Post 
-        id={post.id}
-        title={post.title}
-        content={post.content}
-        date={post.date}
-      />
+      <h1>{post.title}</h1>
+      <Post {...post} />
     </>
   );
 }

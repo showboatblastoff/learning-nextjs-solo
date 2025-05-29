@@ -3,6 +3,9 @@ import { Button } from '@/app/ui/components/button';
 import Post from '@/app/ui/components/posts/Post';
 import { fetchPosts } from '@/app/lib/data';
 
+// Force dynamic rendering since we're using noStore()
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   // This will trigger loading.tsx while data is being fetched
   const posts = await fetchPosts();
