@@ -7,7 +7,10 @@ import { useSession } from "next-auth/react";
 
 export default function Page() {
   const router = useRouter()
+  const PROMPT = "You are a creative blog writer. write a 50-word blog post about the title below. You can write anything you want, but it must be at least 50 words long. The title is: "
+  const [generating, setGenerating] = useState(false);
   const { data: session } = useSession();
+  const [content, setContent] = useState('');
   const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     id: '',
@@ -56,7 +59,32 @@ export default function Page() {
     })
   }
 
+  const generateContent = () => {
+    setGenerating(true);
+    if (!formData?.title) { return false }
+    const requestParams = {
+      model: "gpt-3.5-turbo",
+      messages: [{ "role": "system", "content": PROMPT + formData?.title },
+        { "role": "user", "content": formData?.title},]
+    }
+    fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify(requestParams)
+    }).then(response => response.json())
+      .then(data => {
+        setContent(data.choices[0].message.content);
+        console.log(data.choices[0].message.content);
+        setGenerating(false);
+      }).catch(console.error);
+  }
+
+
   useEffect(() => {
+    console.log("API KEY", process.env.OPENAI_API_KEY);
     setUser(session?.user || null);
     if (!session?.user) {
       router.push('/blog/posts');
@@ -65,7 +93,7 @@ export default function Page() {
 
   return (
     <div className="bg-white p-8 rounded shadow">
-      <h2 className="text-2xl mb-4 text-purple-700">New Blog Post</h2>
+      <h2 className="text-2xl mb-4 text-purple-700">{user && `${user.name}'s `}Blog Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="title" className="block font-medium">Title:</label>
@@ -74,6 +102,8 @@ export default function Page() {
         <div>
           <label htmlFor="content" className="block font-medium">Content:</label>
           <textarea id="content" name="content" rows={4} value={formData.content} onChange={handleChange} className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none"></textarea>
+          {generating && <p className='text-purple-700 my-1'>Generating content...</p>}
+          <button onClick={generateContent} type="button" className="text-white px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700">Generate Content</button>
         </div>
         <div>
           <label htmlFor="date" className="block font-medium">Date:</label>
