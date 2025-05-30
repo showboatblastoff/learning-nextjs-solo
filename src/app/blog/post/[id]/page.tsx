@@ -1,7 +1,8 @@
 "use client";
+import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Post from '@/app/ui/components/posts/Post';
-import { notFound } from 'next/navigation';
+
 
 interface PostType {
   id: string;
