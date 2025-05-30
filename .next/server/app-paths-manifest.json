@@ -1,14 +1,14 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/posts/route": "app/api/posts/route.js",
   "/api/handlers/route": "app/api/handlers/route.js",
+  "/api/posts/route": "app/api/posts/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/form/page": "app/form/page.js",
   "/page": "app/page.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/blog/about/page": "app/blog/about/page.js",
-  "/blog/post/[id]/page": "app/blog/post/[id]/page.js",
-  "/blog/contact/page": "app/blog/contact/page.js",
   "/blog/post/insert/page": "app/blog/post/insert/page.js",
-  "/blog/posts/page": "app/blog/posts/page.js"
+  "/blog/posts/page": "app/blog/posts/page.js",
+  "/blog/post/[id]/page": "app/blog/post/[id]/page.js",
+  "/blog/contact/page": "app/blog/contact/page.js"
 }
