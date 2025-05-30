@@ -1,1 +1,26 @@
-{"node":{"7740449ffbb071de6f9310eb1446f3b35f1ef389":{"workers":{"app/blog/contact/page":"6449","app/blog/about/page":"6449","app/blog/post/[id]/page":"6449","app/blog/post/insert/page":"6449","app/blog/posts/page":"6449"},"layer":{"app/blog/contact/page":"rsc","app/blog/about/page":"rsc","app/blog/post/[id]/page":"rsc","app/blog/post/insert/page":"rsc","app/blog/posts/page":"rsc"}},"9d84c7fb1097d3e94a97e5c8a923185a359e1a43":{"workers":{"app/blog/contact/page":"6449","app/blog/about/page":"6449","app/blog/post/[id]/page":"6449","app/blog/post/insert/page":"6449","app/blog/posts/page":"6449"},"layer":{"app/blog/contact/page":"rsc","app/blog/about/page":"rsc","app/blog/post/[id]/page":"rsc","app/blog/post/insert/page":"rsc","app/blog/posts/page":"rsc"}}},"edge":{},"encryptionKey":"hxGMabt0K9lJYRmTL1KFAMHDr1g641kihrtoWNRNCwA="}
+{
+  "node": {
+    "7740449ffbb071de6f9310eb1446f3b35f1ef389": {
+      "workers": {
+        "app/blog/posts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fshowboatstudio%2Flocker%2FTUTORIALS%2FLIL%2Flearning-nextjs-solo%2Fsrc%2Fapp%2Fui%2Fcomponents%2Flogin%2Fauth-component.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/blog/post/insert/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fshowboatstudio%2Flocker%2FTUTORIALS%2FLIL%2Flearning-nextjs-solo%2Fsrc%2Fapp%2Fui%2Fcomponents%2Flogin%2Fauth-component.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/blog/posts/page": "rsc",
+        "app/blog/post/insert/page": "rsc"
+      }
+    },
+    "9d84c7fb1097d3e94a97e5c8a923185a359e1a43": {
+      "workers": {
+        "app/blog/posts/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fshowboatstudio%2Flocker%2FTUTORIALS%2FLIL%2Flearning-nextjs-solo%2Fsrc%2Fapp%2Fui%2Fcomponents%2Flogin%2Fauth-component.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/blog/post/insert/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fshowboatstudio%2Flocker%2FTUTORIALS%2FLIL%2Flearning-nextjs-solo%2Fsrc%2Fapp%2Fui%2Fcomponents%2Flogin%2Fauth-component.tsx%22%2C%5B%22%24%24ACTION_1%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/blog/posts/page": "rsc",
+        "app/blog/post/insert/page": "rsc"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "3QSVeQb0A05YN/e5h/d3AcClGirvIQUXP6l9807TvrM="
+}
