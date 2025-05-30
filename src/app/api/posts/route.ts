@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     // SQL query to insert a new post with author from form
     const posts = await sql`
       INSERT INTO posts (id, author, title, content, date)
-      VALUES (${id}, ${author || 'Anonymous'}, ${title}, ${content}, ${date})
+      VALUES (${id}, ${author}, ${title}, ${content}, ${date})
       RETURNING *;
     `;
     console.log('New post created:', posts[0]); // Log the new post to the terminal

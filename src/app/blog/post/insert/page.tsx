@@ -28,12 +28,13 @@ export default function Page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const uuid = uuidv4();
+    const author = session?.user?.name || "Anonymous";
     fetch(`/api/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...formData, id: uuid })
+      body: JSON.stringify({ ...formData, id: uuid, author })
     }).then(async (response) => {
       if (!response.ok) {
         const error = await response.json();
@@ -63,10 +64,6 @@ export default function Page() {
     <div className="bg-white p-8 rounded shadow">
       <h2 className="text-2xl mb-4 text-purple-700">New Blog Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-          <label htmlFor="author" className="block font-medium">Author:</label>
-          <input type="text" id="author" name="author" value={formData.author} onChange={handleChange} className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none" />
-        </div>
         <div>
           <label htmlFor="title" className="block font-medium">Title:</label>
           <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none" />
@@ -78,10 +75,9 @@ export default function Page() {
         <div>
           <label htmlFor="date" className="block font-medium">Date:</label>
           <input type="text" id="date" name="date" value={formData.date} readOnly className="w-full border-2 border-purple-100 p-2 rounded-md focus:border-purple-200 focus:outline-none" />
-
         </div>
         <div>
-          <button type="submit" className="bg-blue-400 text-white px-4 py-2 rounded-md bg-purple-600  hover:bg-purple-700">Submit</button>
+          <button type="submit" className="text-white px-4 py-2 rounded-md bg-purple-600  hover:bg-purple-700">Submit</button>
         </div>
       </form>
     </div>
