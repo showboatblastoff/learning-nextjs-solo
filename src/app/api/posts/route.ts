@@ -1,6 +1,8 @@
 import { neon } from '@neondatabase/serverless';
 const sql = neon(process.env.DATABASE_URL!);
 import { NextResponse } from 'next/server';
+import { auth } from '../../../../auth.config';
+
 
 export async function GET(request: Request) {
   try {
@@ -27,7 +29,12 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const { id, author, title, content, date  } = await request.json(); // Parse JSON body
+    const session = await auth();
+    if (!session?.user) {
+      return NextResponse.json({ error: 'user not authenticated' }, { status: 401 });
+    }
+    const author = session.user.name || 'Anonymous';
+    const { id, title, content, date  } = await request.json(); // Parse JSON body
 
     // SQL query to insert a new post with author from form
     const posts = await sql`

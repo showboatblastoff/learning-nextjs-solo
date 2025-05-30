@@ -58,6 +58,9 @@ export default function Page() {
 
   useEffect(() => {
     setUser(session?.user || null);
+    if (!session?.user) {
+      router.push('/blog/posts');
+    }
   }, [session]);
 
   return (
