@@ -1,10 +1,14 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
+import { User } from '@/app/lib/definition'
+import { useSession } from "next-auth/react";
 
 export default function Page() {
   const router = useRouter()
+  const { data: session } = useSession();
+  const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     id: '',
     title: '',
@@ -50,6 +54,10 @@ export default function Page() {
       alert('Failed to create post. Please try again.');
     })
   }
+
+  useEffect(() => {
+    setUser(session?.user || null);
+  }, [session]);
 
   return (
     <div className="bg-white p-8 rounded shadow">
