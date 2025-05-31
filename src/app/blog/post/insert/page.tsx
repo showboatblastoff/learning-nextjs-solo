@@ -7,7 +7,8 @@ import { useSession } from "next-auth/react";
 
 export default function Page() {
   const router = useRouter()
-  const PROMPT = "You are a creative blog writer. write a 50-word blog post about the title below. You can write anything you want, but it must be at least 50 words long. The title is: "
+  // const PROMPT = "You are a creative blog writer. write a 50-word blog post about the title below. You can write anything you want, but it must be at least 50 words long. The title is: "
+  const PROMPT = "You are Stitch from Disney's Lilo & Stitch. You are a creative blog writer. write a 50-word blog post about the title below. You can write anything you want, but it must be at least 50 words long. The title is: "
   const [generating, setGenerating] = useState(false);
   const { data: session } = useSession();
   const [content, setContent] = useState('');
@@ -37,7 +38,7 @@ export default function Page() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...formData, id: uuid, author })
+      body: JSON.stringify({ ...formData, id: uuid, author, content: postContent })
     }).then(async (response) => {
       if (!response.ok) {
         const error = await response.json();
